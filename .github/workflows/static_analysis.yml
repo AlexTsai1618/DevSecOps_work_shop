@@ -1,23 +1,12 @@
-name: Example workflow for Python-3.6 using Snyk
-
+name: Example workflow for Python-3.8 using Snyk
 on: push
-
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@master
-      
-      - name: Install Snyk CLI
-        run: |
-          npm install -g snyk
-      
-      - name: Authenticate Snyk CLI
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
-        
+      - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.6@master
+        uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
