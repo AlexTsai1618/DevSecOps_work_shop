@@ -15,6 +15,6 @@ jobs:
             with:
                 github-token: ${{ secrets.TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
                 image-name: DevSecOps_example # Provide only Docker image name, tag will be automatically set to latest
-                dockerfile: Dockerfile_server
+                dockerfile: Dockerfile
           
 
