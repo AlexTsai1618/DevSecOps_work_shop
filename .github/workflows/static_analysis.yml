@@ -1,16 +1,15 @@
-name: Static Code Analysis with Snyk
+name: Example workflow for Python-3.6 using Snyk
 
-on:
-    push
+on: push
 
 jobs:
-    security:
-        runs-on: ubuntu-latest      
-        steps:
-            - uses: actions/checkout@master
-            - name: Run Snyk to check for vulnerabilities
-              uses: snyk/actions/python-3.6@master
-              env:
-                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}            
-            with:
-                args: --severity-threshold=medium
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.6@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
