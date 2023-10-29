@@ -6,10 +6,7 @@ on:
 jobs:
     build_docker_image:
         name: Build & push docker image
-        runs-on: ubuntu-latest
-        defaults:
-          run:
-              working-directory: ./django.nV        
+        runs-on: ubuntu-latest       
         env:
           IMG_NAME: ${{ github.repository }}
         steps:
