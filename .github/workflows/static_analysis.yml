@@ -1,4 +1,4 @@
-name: Example workflow for Python using Snyk
+name: Python using Snyk
 
 on: push
 
@@ -12,14 +12,14 @@ jobs:
       - uses: actions/checkout@master
       
       - name: Authenticate Snyk
+        uses: snyk/actions/python-3.8
         env: SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        uses: snyk/actions/python-3.8@master
 
         with:
           command: auth ${{ secrets.SNYK_TOKEN }}
           
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.8@master
+        uses: snyk/actions/python-3.
         continue-on-error: true # To make sure that SARIF upload gets called
         env: SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
