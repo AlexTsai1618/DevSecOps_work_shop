@@ -1,0 +1,31 @@
+name: Test App code
+
+on:
+    push
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./django.nV
+        steps:
+            - uses: actions/checkout@v3
+            
+            - name: Set up Python 3.8
+            uses: actions/setup-python@v4
+            with:
+                python-version: 3.8
+
+            - name: Install dependencies
+            run: |
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+            
+            - name: Reset Database
+            run: shell reset_db.sh
+
+            - name: Run test
+            run: python3 manage.py test
+
+                
