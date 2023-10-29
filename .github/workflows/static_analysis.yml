@@ -1,17 +1,24 @@
-name: Python Static Analysis  using Snyk
+name: Python Static Analysis using Snyk
 on: push
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          command: auth ${{ secrets.SNYK_TOKEN }}
+          python-version: 3.8
+
+      - name: Install Snyk CLI
+        run: |
+          npm install -g snyk
+
+      - name: Authenticate Snyk CLI
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
+        run: snyk test --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
