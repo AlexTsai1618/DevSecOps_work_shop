@@ -35,7 +35,7 @@ jobs:
         uses: snyk/actions/docker@master
         continue-on-error: true
         with:
-          image: alexboy60318/devsecops_workshop:${{ steps.meta.outputs.tags }}
+          image: alexboy60318/devsecops_workshop
           args: --file=Dockerfile --severity-threshold=high --sarif-file-output=snyk.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
